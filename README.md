@@ -25,65 +25,43 @@ cosine_similarity(word_to_vec_map["france"] - word_to_vec_map["paris"],
 🔁 Complete Word Analogies
 Solves word analogies using vector arithmetic:
 
-python
-Copy
-Edit
 complete_analogy("man", "woman", "boy", word_to_vec_map)
 complete_analogy("italy", "italian", "spain", word_to_vec_map)
 🧭 Bias Direction
 Constructs a bias axis (e.g., g = woman - man) and measures alignment of words with this axis:
 
-python
-Copy
-Edit
 g = word_to_vec_map['woman'] - word_to_vec_map['man']
 cosine_similarity(word_to_vec_map["receptionist"], g)
 🧼 Neutralization
 Removes the gender component from gender-neutral words:
 
-python
-Copy
-Edit
 e_debiased = neutralize("receptionist", g, word_to_vec_map)
 cosine_similarity(e_debiased, g)  # Should be near 0
 ⚖️ Equalization
 Equalizes gender-paired words so that they are equidistant from the bias axis:
 
-python
-Copy
-Edit
 e1, e2 = equalize(("man", "woman"), g, word_to_vec_map)
 cosine_similarity(e1, g)  # ≈ cosine_similarity(e2, g)
 📊 Sample Outputs
-text
-Copy
-Edit
+
 cosine_similarity(father, mother) = 0.89
 cosine_similarity(ball, crocodile) = 0.25
 cosine_similarity(france - paris, rome - italy) = 0.82
 Analogies:
 
-text
-Copy
-Edit
 italy -> italian :: spain -> spanish
 man -> woman :: boy -> girl
 Bias Scores Before Debiasing:
 
-text
-Copy
-Edit
 receptionist  →  0.32
 engineer      → -0.05
 teacher       →  0.28
 After Debiasing:
 
-text
-Copy
-Edit
 cosine_similarity(receptionist, gender axis) → 0.00
 cosine_similarity(man, gender axis) → 0.46
 cosine_similarity(woman, gender axis) → 0.46
+
 📌 Key Takeaways
 Word embeddings capture societal biases that can be measured.
 
@@ -94,13 +72,6 @@ Ensuring fair NLP systems requires careful handling of training data and embeddi
 📦 Dependencies
 Make sure to install:
 
-bash
-Copy
-Edit
-numpy
 To install:
 
-bash
-Copy
-Edit
 pip install numpy
