@@ -37,15 +37,125 @@ Pre-trained 50-dimensional word vectors trained on 6 billion tokens from Wikiped
 Usage:
 Loaded into a word_to_vec_map dictionary for fast vector lookup.
 
-bias-reduction-word-embeddings/
-├── README.md
-├── debias_embeddings.py
-├── utils.py
-├── glove.6B.50d.txt
-├── requirements.txt
-└── examples/
-    └── demo.ipynb
+## System Design
 
+The system is designed as a **modular NLP pipeline** that analyzes and mitigates gender bias in static word embeddings.  
+Each component is responsible for a well-defined stage of the debiasing process, enabling clarity, extensibility, and reproducibility.
+
+---
+
+### High-Level Architecture
+
+Input Words / Queries
+│
+▼
++---------------------+
+| GloVe Embeddings |
+| (Vector Lookup) |
++---------------------+
+│
+▼
++---------------------+
+| Similarity Engine |
+| (Cosine Similarity)|
++---------------------+
+│
+▼
++---------------------+
+| Bias Analyzer |
+| (Bias Direction g) |
++---------------------+
+│
+▼
++---------------------+
+| Debiasing Module |
+| - Neutralization |
+| - Equalization |
++---------------------+
+│
+▼
++---------------------+
+| Evaluation Layer |
+| (Before / After) |
++---------------------+
+│
+▼
+
+### Component Breakdown
+
+#### 1. Embedding Loader
+- Loads pre-trained GloVe vectors into memory
+- Maps words to fixed-length dense vectors
+- Acts as the foundational representation layer
+
+**File:** `debias_embeddings.py`
+
+---
+
+#### 2. Similarity Engine
+- Computes cosine similarity between word vectors
+- Enables semantic comparison and analogy reasoning
+
+**Functions:**
+- `cosine_similarity()`
+- `complete_analogy()`
+
+**File:** `utils.py`
+
+---
+
+#### 3. Bias Analyzer
+- Constructs a **gender bias direction vector**
+- Projects word vectors onto the bias axis
+- Quantifies alignment with societal gender bias
+
+**Example:**
+
+#### 4. Debiasing Module
+
+##### Neutralization
+- Removes gender components from gender-neutral words
+- Ensures embeddings are orthogonal to the bias axis
+
+##### Equalization
+- Forces gendered word pairs to be symmetrically positioned
+- Preserves semantics while enforcing fairness
+
+**File:** `debias_embeddings.py`
+
+---
+
+#### 5. Evaluation Layer
+- Measures cosine similarity before and after debiasing
+- Validates effectiveness of bias mitigation techniques
+- Outputs numerical bias reduction metrics
+
+---
+
+### Design Principles
+
+- **Modularity:** Each component can be extended or replaced independently
+- **Transparency:** All bias operations are mathematically interpretable
+- **Reproducibility:** Uses fixed pre-trained embeddings
+- **Ethical-by-Design:** Explicit bias detection and correction
+
+---
+
+### Scalability & Extensions
+
+- Can be extended to:
+  - Contextual embeddings (BERT, RoBERTa)
+  - Multiple bias dimensions (race, age, profession)
+  - Downstream task evaluation (classification fairness)
+- Visualization modules can be added for embedding space analysis
+
+---
+
+### Constraints
+
+- Static embeddings only
+- Binary gender assumption
+- No real-time or streaming support
 
 ## Key Takeaways
 
