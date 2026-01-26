@@ -45,41 +45,18 @@ Each component is responsible for a well-defined stage of the debiasing process,
 ---
 
 ### High-Level Architecture
-Input Words / Queries
-        │
-        ▼
-+-----------------------+
-|   GloVe Embeddings    |
-|   (Vector Lookup)     |
-+-----------------------+
-        │
-        ▼
-+-----------------------+
-|  Similarity Engine    |
-| (Cosine Similarity)   |
-+-----------------------+
-        │
-        ▼
-+-----------------------+
-|    Bias Analyzer      |
-| (Bias Direction g)    |
-+-----------------------+
-        │
-        ▼
-+-----------------------+
-|   Debiasing Module    |
-|  - Neutralization    |
-|  - Equalization      |
-+-----------------------+
-        │
-        ▼
-+-----------------------+
-|   Evaluation Layer    |
-|   (Before / After)   |
-+-----------------------+
-        │
-        ▼
-Output Metrics & Results
+
+
+| Stage                     | Description / Functionality                                |
+|----------------------------|-----------------------------------------------------------|
+| Input Words / Queries      | Accepts words, word pairs, or analogy queries            |
+| GloVe Embeddings           | Vector lookup of pre-trained embeddings                  |
+| Similarity Engine          | Computes cosine similarity and vector arithmetic         |
+| Bias Analyzer              | Constructs bias direction vector (e.g., g = woman - man) |
+| Debiasing Module           | - Neutralization: removes bias from neutral words<br>- Equalization: balances gendered word pairs |
+| Evaluation Layer           | Measures bias before and after debiasing                 |
+| Output Metrics & Results   | Provides debiased embeddings, similarity scores, and bias metrics |
+
 
 
 
