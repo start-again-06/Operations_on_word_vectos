@@ -45,7 +45,7 @@ Each component is responsible for a well-defined stage of the debiasing process,
 ---
 
 ### High-Level Architecture
-([https://github.com/start-again-06/Operations_on_word_vectos/blob/main/High%20Level%20Architecture](url))
+![High-Level Architecture](HighLevelArchitecture.png)
 
 
 ### Component Breakdown
