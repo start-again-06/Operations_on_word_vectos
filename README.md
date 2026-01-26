@@ -45,7 +45,7 @@ Each component is responsible for a well-defined stage of the debiasing process,
 ---
 
 ### High-Level Architecture
-![High-Level Architecture](HighLevelArchitecture.png)
+(![System Design Architecture](assets/system_design.png))
 
 
 ### Component Breakdown
