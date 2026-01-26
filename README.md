@@ -45,41 +45,8 @@ Each component is responsible for a well-defined stage of the debiasing process,
 ---
 
 ### High-Level Architecture
+([https://github.com/start-again-06/Operations_on_word_vectos/blob/main/High%20Level%20Architecture](url))
 
-Input Words / Queries
-│
-▼
-+---------------------+
-| GloVe Embeddings |
-| (Vector Lookup) |
-+---------------------+
-│
-▼
-+---------------------+
-| Similarity Engine |
-| (Cosine Similarity)|
-+---------------------+
-│
-▼
-+---------------------+
-| Bias Analyzer |
-| (Bias Direction g) |
-+---------------------+
-│
-▼
-+---------------------+
-| Debiasing Module |
-| - Neutralization |
-| - Equalization |
-+---------------------+
-│
-▼
-+---------------------+
-| Evaluation Layer |
-| (Before / After) |
-+---------------------+
-│
-▼
 
 ### Component Breakdown
 
