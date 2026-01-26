@@ -45,7 +45,42 @@ Each component is responsible for a well-defined stage of the debiasing process,
 ---
 
 ### High-Level Architecture
-(![System Design Architecture](assets/system_design.png))
+Input Words / Queries
+        │
+        ▼
++-----------------------+
+|   GloVe Embeddings    |
+|   (Vector Lookup)     |
++-----------------------+
+        │
+        ▼
++-----------------------+
+|  Similarity Engine    |
+| (Cosine Similarity)   |
++-----------------------+
+        │
+        ▼
++-----------------------+
+|    Bias Analyzer      |
+| (Bias Direction g)    |
++-----------------------+
+        │
+        ▼
++-----------------------+
+|   Debiasing Module    |
+|  - Neutralization    |
+|  - Equalization      |
++-----------------------+
+        │
+        ▼
++-----------------------+
+|   Evaluation Layer    |
+|   (Before / After)   |
++-----------------------+
+        │
+        ▼
+Output Metrics & Results
+
 
 
 ### Component Breakdown
