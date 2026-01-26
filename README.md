@@ -1,77 +1,42 @@
-# 🧠 Bias Reduction in Word Embeddings
+Bias Reduction in Word Embeddings
 
-This project explores how gender bias manifests in word embeddings and how to mitigate it using vector operations. The implementation is based on GloVe word vectors and is inspired by the DeepLearning.AI NLP course.
+A practical NLP project that demonstrates how gender bias emerges in word embeddings and how it can be measured, analyzed, and mitigated using vector space operations.
+The implementation uses pre-trained GloVe embeddings and follows debiasing principles introduced in the DeepLearning.AI Natural Language Processing curriculum.
 
----
+Features
 
-## 📁 Dataset
+Cosine Similarity Analysis
 
-- **GloVe Embeddings File**: `glove.6B.50d.txt`  
-  Pre-trained 50-dimensional word vectors.
+Measure semantic similarity between word vectors
 
----
+Word Analogy Resolution
 
-## 🔧 Functionality Overview
+Solve analogies using vector arithmetic
 
-### ✅ Cosine Similarity
+Bias Direction Construction
 
-Measures the similarity between two word vectors:
+Identify gender bias axes in embedding space
 
-```python
-cosine_similarity(word_to_vec_map["father"], word_to_vec_map["mother"])
-cosine_similarity(word_to_vec_map["ball"], word_to_vec_map["crocodile"])
-cosine_similarity(word_to_vec_map["france"] - word_to_vec_map["paris"],
-                  word_to_vec_map["rome"] - word_to_vec_map["italy"])
-🔁 Complete Word Analogies
-Solves word analogies using vector arithmetic:
+Neutralization
 
-complete_analogy("man", "woman", "boy", word_to_vec_map)
-complete_analogy("italy", "italian", "spain", word_to_vec_map)
-🧭 Bias Direction
-Constructs a bias axis (e.g., g = woman - man) and measures alignment of words with this axis:
+Remove gender bias from gender-neutral words
 
-g = word_to_vec_map['woman'] - word_to_vec_map['man']
-cosine_similarity(word_to_vec_map["receptionist"], g)
-🧼 Neutralization
-Removes the gender component from gender-neutral words:
+Equalization
 
-e_debiased = neutralize("receptionist", g, word_to_vec_map)
-cosine_similarity(e_debiased, g)  # Should be near 0
-⚖️ Equalization
-Equalizes gender-paired words so that they are equidistant from the bias axis:
+Balance gendered word pairs symmetrically
 
-e1, e2 = equalize(("man", "woman"), g, word_to_vec_map)
-cosine_similarity(e1, g)  # ≈ cosine_similarity(e2, g)
-📊 Sample Outputs
+Quantitative Bias Evaluation
 
-cosine_similarity(father, mother) = 0.89
-cosine_similarity(ball, crocodile) = 0.25
-cosine_similarity(france - paris, rome - italy) = 0.82
-Analogies:
+Compare bias scores before and after debiasing
 
-italy -> italian :: spain -> spanish
-man -> woman :: boy -> girl
-Bias Scores Before Debiasing:
+Dataset
+GloVe Word Embeddings
 
-receptionist  →  0.32
-engineer      → -0.05
-teacher       →  0.28
-After Debiasing:
+File: glove.6B.50d.txt
 
-cosine_similarity(receptionist, gender axis) → 0.00
-cosine_similarity(man, gender axis) → 0.46
-cosine_similarity(woman, gender axis) → 0.46
+Description:
+Pre-trained 50-dimensional word vectors trained on 6 billion tokens from Wikipedia and Gigaword.
 
-📌 Key Takeaways
-Word embeddings capture societal biases that can be measured.
+Usage:
+Loaded into a word_to_vec_map dictionary for fast vector lookup.
 
-Debiasing involves identifying bias axes and projecting/removing components.
-
-Ensuring fair NLP systems requires careful handling of training data and embeddings.
-
-📦 Dependencies
-Make sure to install:
-
-To install:
-
-pip install numpy
