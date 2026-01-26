@@ -1,8 +1,7 @@
 # Bias Reduction in Word Embeddings
 
 A practical NLP project that demonstrates how **gender bias emerges in word embeddings** and how it can be **measured and mitigated** using vector space operations.  
-The implementation uses **pre-trained GloVe embeddings** and follows debiasing principles introduced in the **DeepLearning.AI Natural Language Processing curriculum**.
-
+The implementation uses **pre-trained GloVe embeddings**.
 ---
 
 ## Features
