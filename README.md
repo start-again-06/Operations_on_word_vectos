@@ -41,10 +41,11 @@ bias-reduction-word-embeddings/
 ├── README.md
 ├── debias_embeddings.py
 ├── utils.py
-├── glove.6B.50d.txt        
+├── glove.6B.50d.txt
 ├── requirements.txt
 └── examples/
     └── demo.ipynb
+
 
 ## Key Takeaways
 
